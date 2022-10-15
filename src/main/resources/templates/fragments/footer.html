@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>footer_fragment</title>
+</head>
+<body>
+
+<!--Start of Footer-->
+<footer th:fragment="footer_fragment" class="bg-dark text-white mt-5 p-2">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="text-muted m-0">
+                    Copyright &copy;
+                    <span id="year">2022</span>
+                    Lexicon Småland
+                </p>
+            </div>
+            <div class="col text-end">
+                <a class="btn btn-sm btn-outline-light" href="?lang=en">
+                    English
+                    <img src="/images/en.png" height="18" width="32" alt="Great britain country flag"/>
+                </a>
+
+                <a class="btn btn-sm btn-outline-light" href="?lang=sv">
+                    Svenska
+                    <img src="/images/sv.png" height="18" width="32" alt="Swedish country flag"/>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</footer>
+<!--Start of Footer-->
+
+
+</body>
+</html>
