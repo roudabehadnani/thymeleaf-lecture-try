@@ -34,8 +34,8 @@ public class CategoryController {
 
         model.addAttribute("categoryViews",categoryViewList);
 
-        CategoryForm categoryForm = new CategoryForm();
-        model.addAttribute("category",categoryForm);
+//        CategoryForm categoryForm = new CategoryForm();
+//        model.addAttribute("category",categoryForm);
 
         return "category/categories-view";
     }
@@ -71,6 +71,14 @@ public class CategoryController {
 
        return "redirect:/category/list";   //redirect to method with mapping /list
 //       return "category/categories-view"; HTML File
+    }
+
+    @GetMapping("/form")
+    public String categoryForm(Model model){
+        CategoryForm categoryForm = new CategoryForm();
+        model.addAttribute("category", categoryForm);
+
+        return "category/category-form";
     }
 
     @PostMapping("/add")

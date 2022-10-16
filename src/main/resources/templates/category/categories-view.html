@@ -46,29 +46,27 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-lg-9">
 
-                <div class="card">
 
-                    <div class="card-body">
+
+                <!--Start of Action Section-->
+                <section class="mb-4">
+                    <div class="container">
+
                         <div class="row">
 
-                            <form th:action="@{/category/add}" th:object="${category}" method="post">
-                                <div class="col-sm-12 form-group">
-                                    <label for="category">Name: </label>
-                                    <input th:field="*{name}" id="category" name="category" type="text" placeholder="Enter a Category Name" class="form-control" />
-                                    <p class="alert alert-danger visually-hidden"><small>validation message</small></p>
-                                </div>
-                                <hr/>
-
-                                <div class="d-grid gap-1">
-                                    <button type="submit" class="btn btn-primary">Add</button>
-                                </div>
-                            </form>
+                            <div class="d-grid">
+                                <a th:href="@{/category/form}" href="#" class="btn btn-success">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Add Category</span>
+                                </a>
+                            </div>
 
                         </div>
                     </div>
-                </div>
+                </section>
+                <!--End of Action Section-->
 
                 <br/>
                 <!-- start of table -->
@@ -97,15 +95,25 @@
                                 <td th:text="${categoryView.name}"></td>
                                 <td th:text="${categoryView.createDate}"></td>
                                 <td>
-                                    <a th:href="@{/category/delete/{id} (id = ${categoryView.id})}" href="#" class="btn btn-danger" >Delete</a>
-                                    <a href="#" class="btn btn-warning" >Edit</a>
-                                    <a th:href="@{/category/view/{id} (id=${categoryView.id})}" href="#" class="btn btn-primary" >Details</a>
+                                    <a th:href="@{/category/delete/{id} (id=${categoryView.id})}" href="#" class="btn btn-danger">
+                                        <i class="fas fa-trash-can"></i>
+                                        <span class="d-none d-md-inline">Delete</span>
+                                    </a>
 
-                                    <form th:action="@{/category/view}" method="post">
+                                    <a href="#" class="btn btn-warning">
+                                        <i class="fas fa-pen-to-square"></i>
+                                        <span class="d-none d-md-inline">edit</span>
+                                    </a>
+                                    <a th:href="@{/category/view/{id} (id=${categoryView.id})}" href="#" class="btn btn-primary">
+                                        <i class="fas fa-circle-info"></i>
+                                        <span class="d-none d-md-inline">Details</span>
+                                    </a>
+
+                                    <form class="d-inline" th:action="@{/category/view}" method="post">
                                         <input type="hidden" th:value="${categoryView.id}" th:attr="name='id'">
                                         <button type="submit"  href="#" class="btn btn-primary">
-                                            <i class="fas fa-angle-double-right "></i>
-                                            <span>Details</span>
+                                            <i class="fas fa-angle-double-right"></i>
+                                            <span class="d-none d-md-inline">Details</span>
                                         </button>
                                     </form>
 
@@ -121,10 +129,10 @@
             </div>
             <!--end of table-->
 
-            <div class="col-md-2">
+            <div class="col-md-2 d-none d-lg-block">
                 <div class="card text-center bg-success text-white mb-2">
                     <div class="card-body">
-                        <h3>Categories </h3>
+                        <p class="text-lg-center">Categories</p>
                         <h4 class="display-6">
                             <i th:text="${categoryViews.size()}" class="fas fa-folder"> 2</i>
                         </h4>
