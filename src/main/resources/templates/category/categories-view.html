@@ -53,16 +53,16 @@
                     <div class="card-body">
                         <div class="row">
 
-                            <form>
+                            <form th:action="@{/category/add}" th:object="${category}" method="post">
                                 <div class="col-sm-12 form-group">
                                     <label for="category">Name: </label>
-                                    <input id="category" name="category" type="text" placeholder="Enter a Category Name" class="form-control" />
+                                    <input th:field="*{name}" id="category" name="category" type="text" placeholder="Enter a Category Name" class="form-control" />
                                     <p class="alert alert-danger visually-hidden"><small>validation message</small></p>
                                 </div>
                                 <hr/>
 
                                 <div class="d-grid gap-1">
-                                    <button type="button" class="btn btn-primary">Add</button>
+                                    <button type="submit" class="btn btn-primary">Add</button>
                                 </div>
                             </form>
 
@@ -88,12 +88,16 @@
 
                             <tbody>
 
-                            <tr th:each="categoryView : ${categoryViews}">
+                            <tr th:if="${categoryViews eq null || categoryViews.isEmpty()}">
+                                <td colspan="4">No Record Available</td>
+                            </tr>
+
+                            <tr th:unless="${categoryViews eq null || categoryViews.isEmpty()}" th:each="categoryView : ${categoryViews}">
                                 <td th:text="${categoryView.id}"></td>
                                 <td th:text="${categoryView.name}"></td>
                                 <td th:text="${categoryView.createDate}"></td>
                                 <td>
-                                    <a href="#" class="btn btn-danger" >Delete</a>
+                                    <a th:href="@{/category/delete/{id} (id = ${categoryView.id})}" href="#" class="btn btn-danger" >Delete</a>
                                     <a href="#" class="btn btn-warning" >Edit</a>
                                     <a th:href="@{/category/view/{id} (id=${categoryView.id})}" href="#" class="btn btn-primary" >Details</a>
 
@@ -111,7 +115,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <p class="m-0" th:text="|count: ${categoryListSize}|"> count: </p>
+                        <p class="m-0" th:text="|count: ${categoryViews.size()}|"> count: </p>
                     </div>
                 </div>
             </div>
@@ -122,7 +126,7 @@
                     <div class="card-body">
                         <h3>Categories </h3>
                         <h4 class="display-6">
-                            <i th:text="${categoryListSize}" class="fas fa-folder"> 2</i>
+                            <i th:text="${categoryViews.size()}" class="fas fa-folder"> 2</i>
                         </h4>
                     </div>
                 </div>
